@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_16"
+               BlueprintIdentifier = "F44D7C5D22D4C39C00A853C8"
                BuildableName = "TabPageViewController.framework"
                BlueprintName = "TabPageViewController"
                ReferencedContainer = "container:TabPageViewController.xcodeproj">
@@ -55,7 +55,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_16"
+            BlueprintIdentifier = "F44D7C5D22D4C39C00A853C8"
             BuildableName = "TabPageViewController.framework"
             BlueprintName = "TabPageViewController"
             ReferencedContainer = "container:TabPageViewController.xcodeproj">
@@ -70,6 +70,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F44D7C5D22D4C39C00A853C8"
+            BuildableName = "TabPageViewController.framework"
+            BlueprintName = "TabPageViewController"
+            ReferencedContainer = "container:TabPageViewController.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
