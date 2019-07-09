@@ -23,7 +23,7 @@ public class TabItem {
         }
     }
     
-    var width: CGFloat {
+    var itemWidth: CGFloat {
         var width: CGFloat = 0.0
         
         if let title = title as NSString? {

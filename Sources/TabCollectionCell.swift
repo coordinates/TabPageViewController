@@ -85,7 +85,7 @@ extension TabCollectionCell {
         if let tabWidth = option.tabWidth , tabWidth > 0.0 {
             width = tabWidth
         } else {
-            width = item.width + option.tabMargin * 2
+            width = item.itemWidth + option.tabMargin * 2
         }
 
         let size = CGSize(width: width, height: option.tabHeight)
