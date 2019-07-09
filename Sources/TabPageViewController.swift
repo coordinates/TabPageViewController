@@ -11,7 +11,7 @@ import UIKit
 open class TabPageViewController: UIPageViewController {
     open var isInfinity: Bool = false
     open var option: TabPageOption = TabPageOption()
-    open var tabItems: [(viewController: UIViewController, title: String)] = []
+    open var tabItems: [(viewController: UIViewController, item: TabItem)] = []
 
     var currentIndex: Int? {
         guard let viewController = viewControllers?.first else {
@@ -178,7 +178,7 @@ extension TabPageViewController {
 
         view.addConstraints([top, left, right])
 
-        tabView.pageTabItems = tabItems.map({ $0.title})
+        tabView.pageTabItems = tabItems.map({ $0.item})
         tabView.updateCurrentIndex(beforeIndex, shouldScroll: true)
 
         tabView.pageItemPressedBlock = { [weak self] (index: Int, direction: UIPageViewController.NavigationDirection) in

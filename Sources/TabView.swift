@@ -11,7 +11,7 @@ import UIKit
 internal class TabView: UIView {
 
     var pageItemPressedBlock: ((_ index: Int, _ direction: UIPageViewController.NavigationDirection) -> Void)?
-    var pageTabItems: [String] = [] {
+    var pageTabItems: [TabItem] = [] {
         didSet {
             pageTabItemsCount = pageTabItems.count
             beforeIndex = pageTabItems.count

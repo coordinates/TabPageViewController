@@ -16,9 +16,22 @@ class TabCollectionCell: UICollectionViewCell {
             currentBarViewHeightConstraint.constant = option.currentBarHeight
         }
     }
-    var item: String = "" {
+    var item: TabItem! {
         didSet {
-            itemLabel.text = item
+            if let title = item.title {
+                itemLabel.text = title
+            }
+            else {
+                itemLabel.isHidden = true
+            }
+
+            if let icon = item.icon {
+                iconImageView.image = icon
+            }
+            else {
+                iconImageView.isHidden = true
+            }
+            stackView.spacing = item.spacing
             itemLabel.invalidateIntrinsicContentSize()
             invalidateIntrinsicContentSize()
         }
@@ -36,21 +49,25 @@ class TabCollectionCell: UICollectionViewCell {
         }
     }
 
+    @IBOutlet fileprivate weak var stackView: UIStackView!
+    @IBOutlet fileprivate weak var iconImageView: UIImageView!
     @IBOutlet fileprivate weak var itemLabel: UILabel!
     @IBOutlet fileprivate weak var currentBarView: UIView!
     @IBOutlet fileprivate weak var currentBarViewHeightConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         currentBarView.isHidden = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        iconImageView.isHidden = false
+        itemLabel.isHidden = false
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        if item.utf8.count == 0 {
-            return CGSize.zero
-        }
-
         return intrinsicContentSize
     }
 
@@ -68,7 +85,7 @@ extension TabCollectionCell {
         if let tabWidth = option.tabWidth , tabWidth > 0.0 {
             width = tabWidth
         } else {
-            width = itemLabel.intrinsicContentSize.width + option.tabMargin * 2
+            width = item.width + option.tabMargin * 2
         }
 
         let size = CGSize(width: width, height: option.tabHeight)
@@ -84,11 +101,13 @@ extension TabCollectionCell {
     }
 
     func highlightTitle() {
+        iconImageView.tintColor = option.currentColor
         itemLabel.textColor = option.currentColor
         itemLabel.font = UIFont.boldSystemFont(ofSize: option.fontSize)
     }
 
     func unHighlightTitle() {
+        iconImageView.tintColor = option.defaultColor
         itemLabel.textColor = option.defaultColor
         itemLabel.font = UIFont.systemFont(ofSize: option.fontSize)
     }
