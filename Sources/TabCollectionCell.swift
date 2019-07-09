@@ -103,13 +103,13 @@ extension TabCollectionCell {
     func highlightTitle() {
         iconImageView.tintColor = option.currentColor
         itemLabel.textColor = option.currentColor
-        itemLabel.font = UIFont.boldSystemFont(ofSize: option.fontSize)
+        itemLabel.font = UIFont.boldSystemFont(ofSize: item.font.pointSize)
     }
 
     func unHighlightTitle() {
         iconImageView.tintColor = option.defaultColor
         itemLabel.textColor = option.defaultColor
-        itemLabel.font = UIFont.systemFont(ofSize: option.fontSize)
+        itemLabel.font = item.font
     }
 }
 
