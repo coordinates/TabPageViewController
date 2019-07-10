@@ -51,10 +51,8 @@ class TabCollectionCell: UICollectionViewCell {
             currentBarView.isHidden = !isCurrent
             if isCurrent {
                 highlightTitle()
-                rectangleView.backgroundColor = option.defaultColor
             } else {
                 unHighlightTitle()
-                rectangleView.backgroundColor = UIColor.clear
             }
             currentBarView.backgroundColor = option.currentColor
             layoutIfNeeded()
@@ -135,12 +133,14 @@ extension TabCollectionCell {
     }
 
     func highlightTitle() {
+        rectangleView.backgroundColor = option.defaultColor
         iconImageView.tintColor = option.currentColor
         itemLabel.textColor = option.currentColor
         itemLabel.font = UIFont.boldSystemFont(ofSize: item.font.pointSize)
     }
 
     func unHighlightTitle() {
+        rectangleView.backgroundColor = option.currentColor
         iconImageView.tintColor = option.defaultColor
         itemLabel.textColor = option.defaultColor
         itemLabel.font = item.font
