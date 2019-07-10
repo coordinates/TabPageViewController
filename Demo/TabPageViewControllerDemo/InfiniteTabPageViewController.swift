@@ -31,10 +31,14 @@ class InfiniteTabPageViewController: TabPageViewController {
             (vc5, TabItem(title: "Fri."))
         ]
         isInfinity = true
-        option.currentColor = UIColor(red: 246/255, green: 175/255, blue: 32/255, alpha: 1.0)
-        option.tabMargin = 30.0
-        option.tabWidth = 110
+        
+        option.tabBackgroundColor = UIColor(red: 241.0 / 255.0, green: 107.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0)
+        option.tabHeight = 50
+        option.defaultColor = UIColor.white
+        option.currentColor = UIColor(red: 241.0 / 255.0, green: 107.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0)
         option.markerStyle = .rounded(height: 24)
+        option.tabWidth = 110
+        option.isTranslucent = false
     }
 
     required init?(coder aDecoder: NSCoder) {
