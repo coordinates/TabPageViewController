@@ -22,6 +22,7 @@ class LimitedTabPageViewController: TabPageViewController {
         ]
         option.tabWidth = view.frame.width / CGFloat(tabItems.count)
         option.hidesTopViewOnSwipeType = .all
+        option.markerStyle = .rounded(height: 24)
     }
 
     required init?(coder aDecoder: NSCoder) {

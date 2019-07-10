@@ -33,6 +33,8 @@ class InfiniteTabPageViewController: TabPageViewController {
         isInfinity = true
         option.currentColor = UIColor(red: 246/255, green: 175/255, blue: 32/255, alpha: 1.0)
         option.tabMargin = 30.0
+        option.tabWidth = 110
+        option.markerStyle = .rounded(height: 24)
     }
 
     required init?(coder aDecoder: NSCoder) {

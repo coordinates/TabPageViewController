@@ -13,7 +13,17 @@ class TabCollectionCell: UICollectionViewCell {
     var tabItemButtonPressedBlock: (() -> Void)?
     var option: TabPageOption = TabPageOption() {
         didSet {
-            currentBarViewHeightConstraint.constant = option.currentBarHeight
+            switch option.markerStyle {
+            case .none:
+                currentBarViewHeightConstraint.constant = 0
+                
+            case .bar(height: let height):
+                currentBarViewHeightConstraint.constant = height
+                
+            case .rounded(height: let height):
+                currentBarViewHeightConstraint.constant = 0
+                rectangleHeight = height
+            }
         }
     }
     var item: TabItem! {
@@ -41,8 +51,10 @@ class TabCollectionCell: UICollectionViewCell {
             currentBarView.isHidden = !isCurrent
             if isCurrent {
                 highlightTitle()
+                rectangleView.backgroundColor = option.defaultColor
             } else {
                 unHighlightTitle()
+                rectangleView.backgroundColor = UIColor.clear
             }
             currentBarView.backgroundColor = option.currentColor
             layoutIfNeeded()
@@ -52,6 +64,25 @@ class TabCollectionCell: UICollectionViewCell {
     @IBOutlet fileprivate weak var stackView: UIStackView!
     @IBOutlet fileprivate weak var iconImageView: UIImageView!
     @IBOutlet fileprivate weak var itemLabel: UILabel!
+    
+    @IBOutlet fileprivate weak var rectangleView: UIView!
+    fileprivate var rectangleHeight: CGFloat = 0 {
+        didSet {
+            var height = stackView.frame.height
+            if self.rectangleHeight > height {
+                height = self.rectangleHeight
+            }
+            
+            if let constraint = rectangleView.constraints.first(where: {
+                $0.firstAttribute == .height
+            }) {
+                rectangleView.removeConstraint(constraint)
+            }
+            rectangleView.heightAnchor.constraint(equalToConstant: height).isActive = true
+            rectangleView.layer.cornerRadius = height / 2
+            rectangleView.layoutIfNeeded()
+        }
+    }
     @IBOutlet fileprivate weak var currentBarView: UIView!
     @IBOutlet fileprivate weak var currentBarViewHeightConstraint: NSLayoutConstraint!
 
@@ -62,6 +93,9 @@ class TabCollectionCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        rectangleView.backgroundColor = UIColor.clear
+        currentBarView.isHidden = false
         
         iconImageView.isHidden = false
         itemLabel.isHidden = false

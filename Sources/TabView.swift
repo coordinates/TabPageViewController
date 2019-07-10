@@ -89,30 +89,44 @@ internal class TabView: UIView {
 
         collectionView.scrollsToTop = false
 
-        currentBarView.backgroundColor = option.currentColor
-        currentBarViewHeightConstraint.constant = option.currentBarHeight
-        if !isInfinity {
-            currentBarView.removeFromSuperview()
-            collectionView.addSubview(currentBarView)
-            currentBarView.translatesAutoresizingMaskIntoConstraints = false
-            let top = NSLayoutConstraint(item: currentBarView!,
-                attribute: .top,
-                relatedBy: .equal,
-                toItem: collectionView,
-                attribute: .top,
-                multiplier: 1.0,
-                constant: option.tabHeight - currentBarViewHeightConstraint.constant)
+        switch option.markerStyle {
+        case .none:
+            currentBarView.backgroundColor = UIColor.clear
+            currentBarViewHeightConstraint.constant = 0
+            
+        case .bar(height: let height):
+            currentBarView.backgroundColor = option.currentColor
+            currentBarViewHeightConstraint.constant = height
+            if !isInfinity {
+                currentBarView.removeFromSuperview()
+                collectionView.addSubview(currentBarView)
+                currentBarView.translatesAutoresizingMaskIntoConstraints = false
+                let top = NSLayoutConstraint(item: currentBarView!,
+                                             attribute: .top,
+                                             relatedBy: .equal,
+                                             toItem: collectionView,
+                                             attribute: .top,
+                                             multiplier: 1.0,
+                                             constant: option.tabHeight - currentBarViewHeightConstraint.constant)
+                
+                let left = NSLayoutConstraint(item: currentBarView!,
+                                              attribute: .leading,
+                                              relatedBy: .equal,
+                                              toItem: collectionView,
+                                              attribute: .leading,
+                                              multiplier: 1.0,
+                                              constant: 0.0)
+                currentBarViewLeftConstraint = left
+                collectionView.addConstraints([top, left])
+            }
+            
+        case .rounded(height: let height):
+            currentBarView.backgroundColor = UIColor.clear
+            currentBarViewHeightConstraint.constant = 0
 
-            let left = NSLayoutConstraint(item: currentBarView!,
-                attribute: .leading,
-                relatedBy: .equal,
-                toItem: collectionView,
-                attribute: .leading,
-                multiplier: 1.0,
-                constant: 0.0)
-            currentBarViewLeftConstraint = left
-            collectionView.addConstraints([top, left])
         }
+        
+
 
         bottomBarViewHeightConstraint.constant = 1.0 / UIScreen.main.scale
     }

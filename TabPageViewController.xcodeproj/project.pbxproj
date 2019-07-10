@@ -25,6 +25,16 @@
 		OBJ_28 /* TabPageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* TabPageViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F434866122D59B46004A9716 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F44D7C5D22D4C39C00A853C8;
+			remoteInfo = TabPageViewController;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		4C4753CE1E7159C600D9DD5C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -209,6 +219,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F434866222D59B46004A9716 /* PBXTargetDependency */,
 			);
 			name = TabPageViewControllerDemo;
 			productName = TabPageViewControllerDemo;
@@ -344,6 +355,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F434866222D59B46004A9716 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F44D7C5D22D4C39C00A853C8 /* TabPageViewController */;
+			targetProxy = F434866122D59B46004A9716 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C2122EC1E6E8FC300572DBD /* Main.storyboard */ = {
