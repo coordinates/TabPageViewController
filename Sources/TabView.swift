@@ -123,7 +123,6 @@ internal class TabView: UIView {
         case .rounded(height: let height):
             currentBarView.backgroundColor = UIColor.clear
             currentBarViewHeightConstraint.constant = 0
-
         }
         
 
@@ -213,9 +212,9 @@ extension TabView {
      - parameter index: Next Index
      */
     func updateCurrentIndex(_ index: Int, shouldScroll: Bool) {
-        deselectVisibleCells()
-
         currentIndex = isInfinity ? index + pageTabItemsCount : index
+        
+        updateVisibleCells()
 
         let indexPath = IndexPath(item: currentIndex, section: 0)
         moveCurrentBarView(indexPath, animated: !isInfinity, shouldScroll: shouldScroll)
@@ -227,7 +226,7 @@ extension TabView {
      - parameter index: Next IndexPath√
      */
     fileprivate func updateCurrentIndexForTap(_ index: Int) {
-        deselectVisibleCells()
+        updateVisibleCells()
 
         if isInfinity && (index < pageTabItemsCount) || (index >= pageTabItemsCount * 2) {
             currentIndex = (index < pageTabItemsCount) ? index + pageTabItemsCount : index - pageTabItemsCount
@@ -288,11 +287,17 @@ extension TabView {
     /**
      Update all of the cells in the display to the unselected state
      */
-    fileprivate func deselectVisibleCells() {
+    fileprivate func updateVisibleCells() {
         collectionView
             .visibleCells
             .compactMap { $0 as? TabCollectionCell }
-            .forEach { $0.isCurrent = false }
+            .forEach { (cell) in
+                guard let indexPath = collectionView.indexPath(for: cell) else {
+                    cell.isCurrent = false
+                    return
+                }
+                cell.isCurrent = indexPath.item == currentIndex
+        }
     }
 }
 
