@@ -32,5 +32,10 @@ extension ListViewController {
         cell.textLabel?.text = String((indexPath as NSIndexPath).row)
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ListViewController")
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

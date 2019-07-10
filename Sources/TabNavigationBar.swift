@@ -12,7 +12,7 @@ public class TabNavigationBar: UINavigationBar {
     override public func layoutSubviews() {
         super.layoutSubviews()
         
-        // 左の _UIButtonBarStackView だけ詰めたい
+        // 左の _UIButtonBarStackView だけ詰める
         if #available(iOS 11, *) {
             for subview in super.subviews {
                 guard NSStringFromClass(type(of: subview)) == "_UINavigationBarContentView" else {
@@ -20,19 +20,9 @@ public class TabNavigationBar: UINavigationBar {
                 }
                 
                 // back item の時は詰まっているので気にしない
-                if originalLayoutMargins == .zero {
-                    originalLayoutMargins = subview.layoutMargins
-                }
-                
-                if subview.subviews.first(where: { (view) -> Bool in
-                    view is TabView
-                }) != nil {
-                    var margins = subview.layoutMargins
-                    margins.left = 0
-                    subview.layoutMargins = margins
-                } else {
-                    subview.layoutMargins = originalLayoutMargins
-                }
+                var margins = subview.layoutMargins
+                margins.left = 0
+                subview.layoutMargins = margins
             }
         } else {
         }
