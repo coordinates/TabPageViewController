@@ -25,6 +25,15 @@ public class TabNavigationBar: UINavigationBar {
                 subview.layoutMargins = margins
             }
         } else {
+            guard let tabView = super.subviews.first(where: { (subview) -> Bool in
+                subview is TabView
+            }) else {
+                return
+            }
+
+            var frame = tabView.frame
+            frame.origin.x = 0
+            tabView.frame = frame
         }
     }
 }
