@@ -50,9 +50,14 @@ open class TabPageViewController: UIPageViewController {
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        if let currentIndex = currentIndex , isInfinity {
-            _tabView.updateCurrentIndex(currentIndex, shouldScroll: true)
+        
+        if #available(iOS 11, *) {
+        } else {
+            DispatchQueue.main.async {
+                if let currentIndex = self.currentIndex, self.isInfinity {
+                    self._tabView.updateCurrentIndex(currentIndex, shouldScroll: true)
+                }
+            }
         }
     }
 
@@ -121,10 +126,15 @@ extension TabPageViewController {
 
     fileprivate func configuredTabView() -> TabView {
         let tabView = TabView(isInfinity: isInfinity, option: option)
-        tabView.translatesAutoresizingMaskIntoConstraints = false
-
-        tabView.heightAnchor.constraint(equalToConstant: option.tabHeight).isActive = true
-        tabView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        
+        if #available(iOS 11, *) {
+            tabView.translatesAutoresizingMaskIntoConstraints = false
+            tabView.heightAnchor.constraint(equalToConstant: option.tabHeight).isActive = true
+            tabView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        } else {
+            tabView.frame.size.width = UIScreen.main.bounds.width
+            tabView.frame.size.height = option.tabHeight
+        }
 
         tabView.pageTabItems = tabItems.map({ $0.item})
         tabView.updateCurrentIndex(beforeIndex, shouldScroll: true)
