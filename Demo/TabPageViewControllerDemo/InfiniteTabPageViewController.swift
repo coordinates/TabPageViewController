@@ -32,7 +32,8 @@ class InfiniteTabPageViewController: TabPageViewController {
         ]
         isInfinity = true
         
-        option.tabBackgroundColor = UIColor(red: 241.0 / 255.0, green: 107.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0)
+//        option.tabBackgroundColor = UIColor(red: 241.0 / 255.0, green: 107.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0)
+        option.tabBackgroundColor = nil
         option.tabHeight = 44
         option.defaultColor = UIColor.white
         option.currentColor = UIColor(red: 241.0 / 255.0, green: 107.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0)
@@ -52,5 +53,6 @@ class InfiniteTabPageViewController: TabPageViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 241.0 / 255.0, green: 107.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0)
     }
 }

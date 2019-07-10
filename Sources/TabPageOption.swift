@@ -32,7 +32,7 @@ public struct TabPageOption {
     public var tabMargin: CGFloat = 20.0
     public var tabWidth: CGFloat?
     public var markerStyle: MakerStyle = .bar(height: 2.0)
-    public var tabBackgroundColor: UIColor = .white
+    public var tabBackgroundColor: UIColor? = nil
     public var pageBackgoundColor: UIColor = UIColor.white
     public var isTranslucent: Bool = true
     public var hidesTopViewOnSwipeType: HidesTopContentsOnSwipeType = .none
@@ -40,16 +40,20 @@ public struct TabPageOption {
     internal var tabBarAlpha: CGFloat {
         return isTranslucent ? 0.95 : 1.0
     }
-    internal var tabBackgroundImage: UIImage {
+    internal var tabBackgroundImage: UIImage? {
         return convertImage()
     }
 
-    fileprivate func convertImage() -> UIImage {
+    fileprivate func convertImage() -> UIImage? {
+        guard let backgroundColor = tabBackgroundColor else {
+            return nil
+        }
+        
         let rect : CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
         let context : CGContext? = UIGraphicsGetCurrentContext()
-        let backgroundColor = tabBackgroundColor.withAlphaComponent(tabBarAlpha).cgColor
-        context?.setFillColor(backgroundColor)
+        let cgColor = backgroundColor.withAlphaComponent(tabBarAlpha).cgColor
+        context?.setFillColor(cgColor)
         context?.fill(rect)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()

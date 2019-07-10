@@ -45,7 +45,11 @@ internal class TabView: UIView {
         self.isInfinity = isInfinity
         Bundle(for: TabView.self).loadNibNamed("TabView", owner: self, options: nil)
         addSubview(contentView)
-        contentView.backgroundColor = option.tabBackgroundColor.withAlphaComponent(option.tabBarAlpha)
+        if let color = option.tabBackgroundColor {
+            contentView.backgroundColor = color.withAlphaComponent(option.tabBarAlpha)
+        } else {
+            contentView.backgroundColor = nil
+        }
 
         let top = NSLayoutConstraint(item: contentView!,
             attribute: .top,

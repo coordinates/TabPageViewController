@@ -140,7 +140,7 @@ extension TabCollectionCell {
     }
 
     func unHighlightTitle() {
-        rectangleView.backgroundColor = option.currentColor
+        rectangleView.backgroundColor = nil
         iconImageView.tintColor = option.defaultColor
         itemLabel.textColor = option.defaultColor
         itemLabel.font = item.font
