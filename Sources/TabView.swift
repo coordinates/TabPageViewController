@@ -133,6 +133,10 @@ internal class TabView: UIView {
     required internal init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    override public var intrinsicContentSize: CGSize {
+        return UIView.layoutFittingExpandedSize
+    }
 }
 
 

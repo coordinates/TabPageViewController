@@ -18,6 +18,10 @@ class ViewController: UIViewController {
 
     @IBAction func InfinityButton(_ button: UIButton) {
         let tc = InfiniteTabPageViewController()
-        navigationController?.pushViewController(tc, animated: true)
+        
+        let navi = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? NavigationController
+        navi?.pushViewController(tc, animated: false)
+        
+        present(navi!, animated: true)
     }
 }

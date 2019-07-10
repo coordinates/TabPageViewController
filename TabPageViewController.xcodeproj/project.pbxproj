@@ -12,6 +12,8 @@
 		4C2122F81E6E9A9500572DBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2122E51E6E8FA500572DBD /* ViewController.swift */; };
 		4C2122F91E6E9AA800572DBD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2122F41E6E93DF00572DBD /* LaunchScreen.xib */; };
 		4C2122FA1E6E9AAE00572DBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2122EC1E6E8FC300572DBD /* Main.storyboard */; };
+		F434867322D5FD08004A9716 /* TabNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434867222D5FD08004A9716 /* TabNavigationBar.swift */; };
+		F434867622D5FFC8004A9716 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434867422D5FFA1004A9716 /* NavigationController.swift */; };
 		F44D7C3422D4773100A853C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C2122EE1E6E8FD300572DBD /* Assets.xcassets */; };
 		F44D7C6622D4C3F800A853C8 /* TabCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2122AA1E6E8AF300572DBD /* TabCollectionCell.swift */; };
 		F44D7C6722D4C3F800A853C8 /* TabCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2122AB1E6E8AF300572DBD /* TabCollectionCell.xib */; };
@@ -63,6 +65,8 @@
 		4C2122EE1E6E8FD300572DBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Demo/TabPageViewControllerDemo/Assets.xcassets; sourceTree = "<group>"; };
 		4C2122F21E6E91FA00572DBD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C2122F51E6E93DF00572DBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Demo/TabPageViewControllerDemo/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F434867222D5FD08004A9716 /* TabNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabNavigationBar.swift; sourceTree = "<group>"; };
+		F434867422D5FFA1004A9716 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = Demo/TabPageViewControllerDemo/NavigationController.swift; sourceTree = "<group>"; };
 		F44D7C3222D46E4700A853C8 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		F44D7C5E22D4C39C00A853C8 /* TabPageViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TabPageViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44D7C6122D4C39C00A853C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../TabPage/Info.plist; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				4C2122E51E6E8FA500572DBD /* ViewController.swift */,
 				F8CE39F61F35AE3A00CF74BA /* LimitedTabPageViewController.swift */,
 				F8CE39F81F35AE6500CF74BA /* InfiniteTabPageViewController.swift */,
+				F434867422D5FFA1004A9716 /* NavigationController.swift */,
 			);
 			name = TabPageViewController;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 		OBJ_8 /* TabPageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F434867222D5FD08004A9716 /* TabNavigationBar.swift */,
 				F44D7C6D22D4C5A000A853C8 /* TabPageViewController.h */,
 				F44D7C6122D4C39C00A853C8 /* Info.plist */,
 				4C2122AA1E6E8AF300572DBD /* TabCollectionCell.swift */,
@@ -292,9 +298,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				OBJ_23 /* TabPageViewControllerTests */,
 				4C2122CE1E6E8E9700572DBD /* TabPageViewControllerDemo */,
 				F44D7C5D22D4C39C00A853C8 /* TabPageViewController */,
+				OBJ_23 /* TabPageViewControllerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8CE39F71F35AE3A00CF74BA /* LimitedTabPageViewController.swift in Sources */,
+				F434867622D5FFC8004A9716 /* NavigationController.swift in Sources */,
 				4C2122F71E6E9A9500572DBD /* ListViewController.swift in Sources */,
 				4C2122F81E6E9A9500572DBD /* ViewController.swift in Sources */,
 				4C2122F61E6E9A9000572DBD /* AppDelegate.swift in Sources */,
@@ -342,6 +349,7 @@
 				F44D7C6622D4C3F800A853C8 /* TabCollectionCell.swift in Sources */,
 				F44D7C6A22D4C3F800A853C8 /* TabView.swift in Sources */,
 				F44D7C6C22D4C3F800A853C8 /* TabItem.swift in Sources */,
+				F434867322D5FD08004A9716 /* TabNavigationBar.swift in Sources */,
 				F44D7C6822D4C3F800A853C8 /* TabPageOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
