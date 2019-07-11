@@ -52,6 +52,9 @@ open class TabPageViewController: UIPageViewController {
         super.viewWillAppear(animated)
         
         if #available(iOS 11, *) {
+            if let currentIndex = self.currentIndex, self.isInfinity {
+                self._tabView.updateCurrentIndex(currentIndex, shouldScroll: true)
+            }
         } else {
             DispatchQueue.main.async {
                 if let currentIndex = self.currentIndex, self.isInfinity {
