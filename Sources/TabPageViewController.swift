@@ -19,6 +19,11 @@ open class TabPageViewController: UIPageViewController {
         }
         return tabItems.map{ $0.viewController }.firstIndex(of: viewController)
     }
+    public var defaultIndex: Int = 0 {
+        didSet {
+            beforeIndex = self.defaultIndex
+        }
+    }
     fileprivate var beforeIndex: Int = 0
     fileprivate var tabItemsCount: Int {
         return tabItems.count

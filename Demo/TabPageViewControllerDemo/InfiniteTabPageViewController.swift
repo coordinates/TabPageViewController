@@ -40,6 +40,7 @@ class InfiniteTabPageViewController: TabPageViewController {
         option.markerStyle = .rounded(height: 24)
         option.tabWidth = 110
         option.isTranslucent = false
+        defaultIndex = 1
     }
 
     required init?(coder aDecoder: NSCoder) {
