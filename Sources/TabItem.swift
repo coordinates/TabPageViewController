@@ -28,7 +28,8 @@ public class TabItem {
         
         if let title = title as NSString? {
             var attributes: [NSAttributedString.Key: Any] = [:]
-            attributes[.font] = font
+            // フォーカス時に bold が指定されると省略されるので bold で計算する
+            attributes[.font] = UIFont.boldSystemFont(ofSize: font.pointSize)
             
             let size = title.size(withAttributes: attributes)
             width += ceil(size.width)

@@ -18,11 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="151" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkt-6L-fmo">
-                        <rect key="frame" x="0.0" y="19" width="151" height="12"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkt-6L-fmo" userLabel="RoundedView">
+                        <rect key="frame" x="49" y="19" width="53" height="12"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="e1l-5Q-VOa">
-                                <rect key="frame" x="49" y="0.0" width="53" height="12"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="e1l-5Q-VOa" userLabel="StackView">
+                                <rect key="frame" x="0.0" y="0.0" width="53" height="12"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="5Zr-Zm-wSl">
                                         <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
@@ -43,8 +43,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="12" id="5HR-Q8-ogf"/>
-                            <constraint firstItem="e1l-5Q-VOa" firstAttribute="centerX" secondItem="xkt-6L-fmo" secondAttribute="centerX" id="sys-Zc-a9d"/>
+                            <constraint firstAttribute="height" constant="12" id="5HR-Q8-ogf" userLabel="height"/>
+                            <constraint firstItem="e1l-5Q-VOa" firstAttribute="leading" secondItem="xkt-6L-fmo" secondAttribute="leading" id="LOZ-Jn-SOb" userLabel="paddingLeft"/>
+                            <constraint firstAttribute="trailing" secondItem="e1l-5Q-VOa" secondAttribute="trailing" id="a2H-vv-7Di" userLabel="paddingRight"/>
                             <constraint firstItem="e1l-5Q-VOa" firstAttribute="centerY" secondItem="xkt-6L-fmo" secondAttribute="centerY" id="yFD-TQ-FRg"/>
                         </constraints>
                     </view>
@@ -70,12 +71,11 @@
                 <constraint firstItem="Sgu-AL-NbW" firstAttribute="leading" secondItem="Njo-bq-MVA" secondAttribute="leading" priority="750" id="8A5-j1-wap"/>
                 <constraint firstItem="Sgu-AL-NbW" firstAttribute="top" secondItem="Njo-bq-MVA" secondAttribute="top" priority="750" id="IJz-mm-YfC"/>
                 <constraint firstAttribute="bottom" secondItem="UkM-Ly-JBr" secondAttribute="bottom" id="J0J-D8-GeH"/>
-                <constraint firstItem="xkt-6L-fmo" firstAttribute="centerX" secondItem="Njo-bq-MVA" secondAttribute="centerX" id="Su8-Sf-9px"/>
+                <constraint firstAttribute="trailing" secondItem="xkt-6L-fmo" secondAttribute="trailing" constant="49" identifier="marginRight" id="Q7X-bc-rkR"/>
+                <constraint firstItem="xkt-6L-fmo" firstAttribute="leading" secondItem="Njo-bq-MVA" secondAttribute="leading" constant="49" identifier="marginLeft" id="Vbc-bS-idn"/>
                 <constraint firstItem="xkt-6L-fmo" firstAttribute="centerY" secondItem="Njo-bq-MVA" secondAttribute="centerY" id="kU7-6m-jrv"/>
                 <constraint firstAttribute="trailing" secondItem="Sgu-AL-NbW" secondAttribute="trailing" priority="750" id="mA5-Ef-SrJ"/>
-                <constraint firstItem="xkt-6L-fmo" firstAttribute="leading" secondItem="Njo-bq-MVA" secondAttribute="leading" id="ma2-8N-XJD"/>
                 <constraint firstItem="UkM-Ly-JBr" firstAttribute="top" secondItem="Sgu-AL-NbW" secondAttribute="bottom" priority="750" id="qYV-Rl-all"/>
-                <constraint firstAttribute="trailing" secondItem="xkt-6L-fmo" secondAttribute="trailing" id="siv-Xm-BJ5"/>
             </constraints>
             <size key="customSize" width="151" height="50"/>
             <connections>
@@ -83,7 +83,12 @@
                 <outlet property="currentBarViewHeightConstraint" destination="5V3-an-ChN" id="uAf-Fp-c3f"/>
                 <outlet property="iconImageView" destination="5Zr-Zm-wSl" id="tuY-0j-yUe"/>
                 <outlet property="itemLabel" destination="IWJ-4f-Lz7" id="CDS-2J-ZMm"/>
-                <outlet property="rectangleView" destination="xkt-6L-fmo" id="0U5-II-5f8"/>
+                <outlet property="roundedHeight" destination="5HR-Q8-ogf" id="Ns7-fu-1s3"/>
+                <outlet property="roundedLeading" destination="Vbc-bS-idn" id="3aC-Jg-BVS"/>
+                <outlet property="roundedTrailing" destination="Q7X-bc-rkR" id="neA-Q0-pal"/>
+                <outlet property="roundedView" destination="xkt-6L-fmo" id="0U5-II-5f8"/>
+                <outlet property="stackLeading" destination="LOZ-Jn-SOb" id="ruT-pm-CfX"/>
+                <outlet property="stackTrailing" destination="a2H-vv-7Di" id="bxd-Zn-XEA"/>
                 <outlet property="stackView" destination="e1l-5Q-VOa" id="gJs-5W-Ago"/>
             </connections>
             <point key="canvasLocation" x="145.5" y="273"/>
