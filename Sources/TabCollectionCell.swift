@@ -14,10 +14,7 @@ class TabCollectionCell: UICollectionViewCell {
     var option: TabPageOption = TabPageOption()
     var item: TabItem! {
         didSet {
-            if let title = item.title {
-                itemLabel.text = title
-            }
-            else {
+            if item.title == nil {
                 itemLabel.isHidden = true
             }
 
@@ -72,6 +69,7 @@ class TabCollectionCell: UICollectionViewCell {
         
         iconImageView.isHidden = false
         itemLabel.isHidden = false
+        itemLabel.attributedText = nil
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -141,15 +139,25 @@ extension TabCollectionCell {
     func highlightTitle() {
         roundedView.backgroundColor = option.defaultColor
         iconImageView.tintColor = option.currentColor
-        itemLabel.textColor = option.currentColor
-        itemLabel.font = UIFont.boldSystemFont(ofSize: item.font.pointSize)
+        
+        guard let title = item.title else {
+            return
+        }
+        var attributes = item.attributes
+        attributes[.foregroundColor] = option.currentColor
+        itemLabel.attributedText = NSAttributedString(string: title, attributes: attributes)
     }
 
     func unHighlightTitle() {
         roundedView.backgroundColor = nil
         iconImageView.tintColor = option.defaultColor
-        itemLabel.textColor = option.defaultColor
-        itemLabel.font = item.font
+        
+        guard let title = item.title else {
+            return
+        }
+        var attributes = item.attributes
+        attributes[.foregroundColor] = option.defaultColor
+        itemLabel.attributedText = NSAttributedString(string: title, attributes: attributes)
     }
 }
 
