@@ -13,7 +13,12 @@ public class TabNavigationBar: UINavigationBar {
         super.layoutSubviews()
         
         // 左の _UIButtonBarStackView だけ詰める
-        if #available(iOS 11, *) {
+        if #available(iOS 13, *) {
+            // none
+            // iOS 13 では layoutMargin を弄ると落ちる。
+            // Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Client error attempting to change layout margins of a private view'
+        }
+        else if #available(iOS 11, *) {
             for subview in super.subviews {
                 guard NSStringFromClass(type(of: subview)) == "_UINavigationBarContentView" else {
                     continue
