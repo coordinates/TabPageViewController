@@ -17,16 +17,6 @@ class ListViewController: UITableViewController {
         let navigationHeight = topLayoutGuide.length 
         tableView.contentInset.top = navigationHeight + TabPageOption().tabHeight
     }
-
-    fileprivate func updateNavigationBarOrigin(velocity: CGPoint) {
-        guard let tabPageViewController = parent as? TabPageViewController else { return }
-
-        if velocity.y > 0.5 {
-            tabPageViewController.updateNavigationBarHidden(true, animated: true)
-        } else if velocity.y < -0.5 {
-            tabPageViewController.updateNavigationBarHidden(false, animated: true)
-        }
-    }
 }
 
 
@@ -42,19 +32,10 @@ extension ListViewController {
         cell.textLabel?.text = String((indexPath as NSIndexPath).row)
         return cell
     }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension ListViewController {
-
-    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        updateNavigationBarOrigin(velocity: velocity)
-    }
-
-    override func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        guard let tabpageViewController = parent as? TabPageViewController else { return }
-
-        tabpageViewController.showNavigationBar()
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ListViewController")
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
+

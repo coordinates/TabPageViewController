@@ -10,15 +10,21 @@ import UIKit
 
 class TabCollectionCell: UICollectionViewCell {
 
-    var tabItemButtonPressedBlock: ((Void) -> Void)?
-    var option: TabPageOption = TabPageOption() {
+    var tabItemButtonPressedBlock: (() -> Void)?
+    var option: TabPageOption = TabPageOption()
+    var item: TabItem! {
         didSet {
-            currentBarViewHeightConstraint.constant = option.currentBarHeight
-        }
-    }
-    var item: String = "" {
-        didSet {
-            itemLabel.text = item
+            if item.title == nil {
+                itemLabel.isHidden = true
+            }
+
+            if let icon = item.icon {
+                iconImageView.image = icon
+            }
+            else {
+                iconImageView.isHidden = true
+            }
+            stackView.spacing = item.spacing
             itemLabel.invalidateIntrinsicContentSize()
             invalidateIntrinsicContentSize()
         }
@@ -36,22 +42,69 @@ class TabCollectionCell: UICollectionViewCell {
         }
     }
 
+    @IBOutlet fileprivate weak var stackView: UIStackView!
+    @IBOutlet fileprivate weak var stackLeading: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var stackTrailing: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var iconImageView: UIImageView!
     @IBOutlet fileprivate weak var itemLabel: UILabel!
+    
+    @IBOutlet fileprivate weak var roundedView: UIView!
+    @IBOutlet fileprivate weak var roundedLeading: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var roundedTrailing: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var roundedHeight: NSLayoutConstraint!
+
     @IBOutlet fileprivate weak var currentBarView: UIView!
     @IBOutlet fileprivate weak var currentBarViewHeightConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         currentBarView.isHidden = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        roundedView.backgroundColor = UIColor.clear
+        currentBarView.isHidden = false
+        
+        iconImageView.isHidden = false
+        itemLabel.isHidden = false
+        itemLabel.attributedText = nil
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        if item.characters.count == 0 {
-            return CGSize.zero
-        }
-
         return intrinsicContentSize
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        switch option.markerStyle {
+        case .none:
+            currentBarViewHeightConstraint.constant = 0
+            
+        case .bar(height: let height):
+            currentBarViewHeightConstraint.constant = height
+            
+        case .rounded(height: let height):
+            currentBarViewHeightConstraint.constant = 0
+            
+            // height
+            roundedHeight.constant = height
+
+            // padding left
+            stackLeading.constant = option.tabPadding
+            // padding right
+            stackTrailing.constant = option.tabPadding
+
+            
+            // margin left
+            roundedLeading.constant = option.tabMargin
+            // margin right
+            roundedTrailing.constant = option.tabMargin
+            
+            roundedView.layer.cornerRadius = height / 2
+        }
     }
 
     class func cellIdentifier() -> String {
@@ -68,7 +121,7 @@ extension TabCollectionCell {
         if let tabWidth = option.tabWidth , tabWidth > 0.0 {
             width = tabWidth
         } else {
-            width = itemLabel.intrinsicContentSize.width + option.tabMargin * 2
+            width = item.itemWidth + option.tabPadding * 2 + option.tabMargin * 2
         }
 
         let size = CGSize(width: width, height: option.tabHeight)
@@ -84,13 +137,27 @@ extension TabCollectionCell {
     }
 
     func highlightTitle() {
-        itemLabel.textColor = option.currentColor
-        itemLabel.font = UIFont.boldSystemFont(ofSize: option.fontSize)
+        roundedView.backgroundColor = option.defaultColor
+        iconImageView.tintColor = option.currentColor
+        
+        guard let title = item.title else {
+            return
+        }
+        var attributes = item.attributes
+        attributes[.foregroundColor] = option.currentColor
+        itemLabel.attributedText = NSAttributedString(string: title, attributes: attributes)
     }
 
     func unHighlightTitle() {
-        itemLabel.textColor = option.defaultColor
-        itemLabel.font = UIFont.systemFont(ofSize: option.fontSize)
+        roundedView.backgroundColor = nil
+        iconImageView.tintColor = option.defaultColor
+        
+        guard let title = item.title else {
+            return
+        }
+        var attributes = item.attributes
+        attributes[.foregroundColor] = option.defaultColor
+        itemLabel.attributedText = NSAttributedString(string: title, attributes: attributes)
     }
 }
 
